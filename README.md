@@ -1,1 +1,1 @@
-# Nextjs-IssueTracker
+# Nextjs-IssueTracker tutorial with Mosh
