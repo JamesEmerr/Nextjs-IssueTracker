@@ -1,5 +1,5 @@
 export default function Home() {
   return (
-    <div>Hello 2024</div>
+    <h1>Hello 2024</h1>
   )
 }
