@@ -1,5 +1,15 @@
-export default function Home() {
+// J Programming
+// Issue Tracker
+
+import React from 'react'
+import { Button } from '@radix-ui/themes';
+
+const IssuesPage = () => {
   return (
-    <h1>Hello 2024</h1>
+    <div>
+      <Button>New Issue</Button>
+    </div>
   )
 }
+
+export default IssuesPage

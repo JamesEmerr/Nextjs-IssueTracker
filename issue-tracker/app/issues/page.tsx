@@ -1,9 +1,14 @@
-import React from 'react'
+// ERROR PAGE
 
-const IssuesPage = () => {
-  return (
-    <div>IssuesPage</div>
-  )
-}
+//import React from 'react'
+//import { Button } from '@radix-ui/themes';
 
-export default IssuesPage
+//const IssuesPage = () => {
+//  return (
+//    <div>
+//      <Button>New Issue</Button>
+//    </div>
+//  )
+//}
+
+//export default IssuesPage
