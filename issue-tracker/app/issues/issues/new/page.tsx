@@ -1,6 +1,6 @@
 'use client';
 
-import { Button, Callout, TextField } from '@radix-ui/themes'
+import { Button, Callout, Text, TextField } from '@radix-ui/themes'
 import SimpleMDE from "react-simplemde-editor";
 import { useForm, Controller } from 'react-hook-form'
 import axios from 'axios';
@@ -11,6 +11,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { createIssueSchema } from '@/app/validationSchemas';
 import { z } from 'zod';
 
+
 type IssueForm = z.infer<typeof createIssueSchema>;
 
 const NewIssuePage = () => {
@@ -19,6 +20,7 @@ const NewIssuePage = () => {
         resolver: zodResolver(createIssueSchema)
     });
     const [error, setError] = useState('');
+    const [isSubmitting, setSubmitting] = useState(false);
 
     return (
         <div> className="max-w-xl"
@@ -29,10 +31,12 @@ const NewIssuePage = () => {
                 className='space-y-3' 
                 onSubmit={handleSubmit(async (data) => {
                     try {
+                        setSubmitting(true);
                         await axios.post('/api/issues',data); 
                         router.push('/issues')                
                     } catch (error) {
-                    setError('An unexpected error occurred.');  
+                        setSubmitting(false);
+                        setError('An unexpected error occurred.');  
                     }
         })}>
         <TextField.Root>
@@ -44,10 +48,10 @@ const NewIssuePage = () => {
             control={control}
             render={({ field }) =>(
                 <SimpleMDE placeholder='Description' {...field} />
-    )}
+            )}
         />
-        {errors.description && <Text color="red" as="p">{errors.description.message}</Text>}        
-        <Button>Submit New Issue</Button>
+            {errors.description && <Text color="red" as="p">{errors.description.message}</Text>}        
+            <Button disabled={isSubmitting}>Submit New Issue {isSubmitting && <Spinner />}</Button>
         </form>
     </div>
   )
